@@ -1,0 +1,135 @@
+Class MainWindow
+    Dim contactlist As New Dictionary(Of String, String)
+
+    Public Property Sorted As Boolean = True
+
+    Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        contactlist = New Dictionary(Of String, String)
+
+        contactlist.Add("Ace Kups", "09202265489")
+        contactlist.Add("Angelo De Leon", "09972030991")
+        contactlist.Add("Bogart Dimagiba", "099212141241")
+        contactlist.Add("Cheverlu", "+639202245987")
+        contactlist.Add("Crispin Basilyo", "09659875642")
+        contactlist.Add("Dave Garcia", "09925896421")
+        contactlist.Add("Diego Latigo", "09078526541")
+        contactlist.Add("Doding Daga", "09095698751")
+        contactlist.Add("Eskalabergs Chenes", "09926987456")
+        contactlist.Add("Fred Pilapil", "09216548956")
+        contactlist.Add("James Mejia", "09942561325")
+        contactlist.Add("Janell De Vera", "09954482166")
+        contactlist.Add("Rein Liit", "09952619259")
+
+        PhoneList()
+
+    End Sub
+    Public Sub PhoneList()
+
+        listBox.Items.Clear()
+        For Each conName As String In contactlist.Keys
+            listBox.Items.Add(conName)
+        Next
+    End Sub
+    Public Sub ShowContactDetails(ByVal contact As String)
+        Dim mail As String = txtMail.Text
+        If Not String.IsNullOrEmpty(contact) Then
+            txtNameout.Text = contact
+            txtNumout.Text = contactlist(contact)
+            txtMailout.Text = (mail)
+        End If
+    End Sub
+    Private Sub listBox_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles listBox.SelectionChanged
+        ShowContactDetails(listBox.SelectedItem)
+    End Sub
+    Private Sub btnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
+
+        If ValidateEmptyInput() Then
+            If Not IsExisting(txtName.Text) Then
+                contactlist.Add(txtName.Text, txtNum.Text)
+                PhoneList()
+            Else
+                MsgBox("Name already in the List", MsgBoxStyle.Critical)
+            End If
+        End If
+
+    End Sub
+    Public Function ValidateEmptyInput() As Boolean
+
+        If String.IsNullOrEmpty(txtName.Text) Then
+            MsgBox("Please Enter Contact Name!", MsgBoxStyle.Critical)
+            Return False
+        End If
+        If String.IsNullOrEmpty(txtNum.Text) Then
+            MsgBox("Please Enter Contact Number!", MsgBoxStyle.Critical)
+            Return False
+        End If
+        Return True
+
+    End Function
+    Public Function IsExisting(ByVal model As String) As Boolean
+        If contactlist.Keys.Contains(model.Trim, StringComparer.OrdinalIgnoreCase) Then
+            Return True
+        End If
+        Return False
+    End Function
+    Private Sub btnSearch_Click(sender As Object, e As RoutedEventArgs) Handles btnSearch.Click
+
+        If IsExisting(txtSearch.Text) Then
+            FindContact(txtSearch.Text)
+        Else
+            MsgBox("Contact Not Found!", MsgBoxStyle.Critical)
+        End If
+
+    End Sub
+
+    Public Function FindContact(ByVal searchKey As String) As String
+        For Each contact As String In contactlist.Keys
+            If String.Equals(contact, searchKey, StringComparison.OrdinalIgnoreCase) Then
+                Dim contactIndex As Integer = listBox.Items.IndexOf(contact)
+                listBox.SelectedIndex = contactIndex
+            End If
+        Next
+    End Function
+    Private Sub btnDel_Click(sender As Object, e As RoutedEventArgs) Handles btnDel.Click
+        listBox.Items.Remove(listBox.SelectedItem)
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As RoutedEventArgs) Handles btnClear.Click
+        txtSearch.Text = ""
+        txtName.Text = ""
+        txtNum.Text = ""
+        txtMail.Text = ""
+    End Sub
+
+    Private Sub btnUpdate_Click(sender As Object, e As RoutedEventArgs) Handles btnUpdate.Click
+
+        If ValidateEmptyInput() Then
+            Dim selectedContact As String = If(listBox.SelectedItem = Nothing, "", listBox.SelectedItem)
+            If Not String.IsNullOrEmpty(selectedContact) Then
+                If IsExisting(selectedContact) Then
+                    If Not String.Equals(listBox.SelectedItem, txtName.Text, StringComparison.OrdinalIgnoreCase) And IsExisting(txtName.Text) Then
+                        MsgBox("Can't change this contact, name already in the list!", MsgBoxStyle.Critical)
+                        Return
+                    ElseIf Not String.Equals(listBox.SelectedItem, txtName.Text, StringComparison.OrdinalIgnoreCase) And Not IsExisting(txtName.Text) Then
+
+                        contactlist.Remove(listBox.SelectedItem)
+                        contactlist.Add(txtName.Text, txtNum.Text)
+                    Else
+
+                        contactlist(txtName.Text) = txtNum.Text
+                    End If
+
+                    PhoneList()
+                    FindContact(txtName.Text)
+                End If
+            Else
+                MsgBox("Please select a contact!", MsgBoxStyle.Critical)
+            End If
+        End If
+
+    End Sub
+
+    Private Sub btnClose_Click(sender As Object, e As RoutedEventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
+End Class
