@@ -1,0 +1,39 @@
+XAML:
+
+
+<Grid x:Name="___No_Name_" Margin="0,0,3.4,2.8" Cursor="Hand" Background="#FF6BA4DA">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="412*"/>
+            <ColumnDefinition Width="577*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="Name:" HorizontalAlignment="Left" Margin="50,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.615,2.307" Width="87" Grid.ColumnSpan="2">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.453"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="label1" Content="Number:" HorizontalAlignment="Left" Margin="50,149,0,0" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2"/>
+        <Label x:Name="label2" Content="Email:" HorizontalAlignment="Left" Margin="50,198,0,0" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="21.8,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" Grid.Column="1"/>
+        <TextBox x:Name="txtNum" HorizontalAlignment="Left" Height="23" Margin="21.8,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" Grid.Column="1"/>
+        <TextBox x:Name="txtMail" HorizontalAlignment="Left" Height="23" Margin="21.8,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" Grid.Column="1"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="453" Margin="247.6,63,0,0" VerticalAlignment="Top" Width="179" FontFamily="Tahoma" FontSize="16" Grid.Column="2" FontWeight="Bold"/>
+        <TextBox x:Name="txtNameout" HorizontalAlignment="Left" Height="30" Margin="310.8,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontSize="18.667" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAdd" Content="Add Contact" HorizontalAlignment="Left" Margin="50,298,0,0" VerticalAlignment="Top" Width="96" Height="46" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnClear" Content="Clear Field" HorizontalAlignment="Left" Margin="152.8,386,0,0" VerticalAlignment="Top" Width="96" Height="46" Grid.Column="1"/>
+        <Button x:Name="btnDel" Content="Remove Contact" HorizontalAlignment="Left" Margin="152.8,298,0,0" VerticalAlignment="Top" Width="96" Height="46" Grid.Column="1"/>
+        <Button x:Name="btnClose" Content="Close PhoneBook" HorizontalAlignment="Left" Margin="41,477,0,0" VerticalAlignment="Top" Width="295" Height="39" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSearch" Content="Search Contact" HorizontalAlignment="Left" Margin="21.8,63,0,0" VerticalAlignment="Top" Width="227" Grid.Column="1"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="23" Margin="21.8,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" Grid.Column="1"/>
+        <Label Content="Search:" HorizontalAlignment="Left" Margin="50,22,0,0" VerticalAlignment="Top" Width="66" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtNumout" HorizontalAlignment="Left" Height="30" Margin="310.8,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontSize="18.667" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="label3" Content="Contact Information" HorizontalAlignment="Left" Margin="408.8,10,0,0" VerticalAlignment="Top" FontSize="21.333" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtMailout" HorizontalAlignment="Left" Height="30" Margin="310.8,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontSize="18.667" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnUpdate" Content="Update Contact" HorizontalAlignment="Left" Margin="50,386,0,0" VerticalAlignment="Top" Width="96" Height="46" Grid.ColumnSpan="2"/>
+
+    </Grid>
