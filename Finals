@@ -1,10 +1,10 @@
 Class MainWindow
-    Dim contactlist As New Dictionary(Of String, String)
+    Dim contactlist As New SortedDictionary(Of String, String)
 
     Public Property Sorted As Boolean = True
 
-    Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        contactlist = New Dictionary(Of String, String)
+    Private Sub MainWindow_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles Me.Loaded
+        contactlist = New SortedDictionary(Of String, String)
 
         contactlist.Add("Ace Kups", "09202265489")
         contactlist.Add("Angelo De Leon", "09972030991")
@@ -38,10 +38,10 @@ Class MainWindow
             txtMailout.Text = (mail)
         End If
     End Sub
-    Private Sub listBox_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles listBox.SelectionChanged
+    Private Sub listBox_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles ListBox.SelectionChanged
         ShowContactDetails(listBox.SelectedItem)
     End Sub
-    Private Sub btnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
+    Private Sub btnAdd_Click(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles btnAdd.Click
 
         If ValidateEmptyInput() Then
             If Not IsExisting(txtName.Text) Then
@@ -72,7 +72,7 @@ Class MainWindow
         End If
         Return False
     End Function
-    Private Sub btnSearch_Click(sender As Object, e As RoutedEventArgs) Handles btnSearch.Click
+    Private Sub btnSearch_Click(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles btnSearch.Click
 
         If IsExisting(txtSearch.Text) Then
             FindContact(txtSearch.Text)
@@ -90,18 +90,18 @@ Class MainWindow
             End If
         Next
     End Function
-    Private Sub btnDel_Click(sender As Object, e As RoutedEventArgs) Handles btnDel.Click
+    Private Sub btnDel_Click(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles btnDel.Click
         listBox.Items.Remove(listBox.SelectedItem)
     End Sub
 
-    Private Sub btnClear_Click(sender As Object, e As RoutedEventArgs) Handles btnClear.Click
+    Private Sub btnClear_Click(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles btnClear.Click
         txtSearch.Text = ""
         txtName.Text = ""
         txtNum.Text = ""
         txtMail.Text = ""
     End Sub
 
-    Private Sub btnUpdate_Click(sender As Object, e As RoutedEventArgs) Handles btnUpdate.Click
+    Private Sub btnUpdate_Click(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles btnUpdate.Click
 
         If ValidateEmptyInput() Then
             Dim selectedContact As String = If(listBox.SelectedItem = Nothing, "", listBox.SelectedItem)
@@ -129,7 +129,7 @@ Class MainWindow
 
     End Sub
 
-    Private Sub btnClose_Click(sender As Object, e As RoutedEventArgs) Handles btnClose.Click
+    Private Sub btnClose_Click(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
 End Class
